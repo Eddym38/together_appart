@@ -1,0 +1,35 @@
+.gauge-label {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.gauge {
+  position: relative;
+  background: #eee;
+  border-radius: 10px;
+  height: 22px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 1px 2px #ccc inset;
+}
+
+.gauge-bar {
+  background: linear-gradient(90deg, #d81b60, #dd4578);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s;
+  width: 100%;
+}
+
+.gauge-value {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 100%;
+  line-height: 22px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px #fff;
+}

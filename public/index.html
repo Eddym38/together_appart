@@ -10,11 +10,32 @@
     <div class="container">
       <!-- TITRE DU JEU -->
       <h1>Together, Apart 💌</h1>
-      <div class="page-layout">
-        "
+      <div class="menu" id="menu">
+        <p class="subtitle">Un jeu de simulation de vie et d'amour</p>
+        <!-- DESCRIPTION DU JEU -->
+        <p class="description">
+          Dans ce jeu, vous devez écrire des messages pour séduire votre
+          bien-aimée tout en gérant vos ressources. Écrivez des caractères,
+          gagnez de l'argent, faites de la recherche et améliorez-vous pour
+          gagner son cœur.
+        </p>
+        <!-- BOUTON POUR COMMENCER OU CONTINUER -->
+        <button id="startBtn">🎮 Commencer ou continuer</button>
+        <!-- BOUTON POUR CHARGER UNE PARTIE -->
+        <button id="loadBtn">📂 Charger une partie</button>
+        <!-- BOUTON POUR AFFICHER LES RÈGLES -->
+        <button id="rulesBtn">📜 Règles du jeu</button>
+        <!-- BOUTON POUR AFFICHER LES CRÉDITS -->
+        <button id="creditsBtn">👥 Crédits</button>
+        <!-- BOUTON POUR AFFICHER LES PARAMÈTRES -->
+        <button id="settingsBtn">⚙️ Paramètres</button>
+      </div>
+
+      <div class="page-layout hidden">
         <div class="main">
           <!-- BARRRES DE RESSOURCES -->
           <div class="resources">
+            <h2>📊 Ressources</h2>
             <p>✍️ Caractères écrits : <span id="characters">0</span></p>
             <p>💕 Amour : <span id="love">0</span></p>
             <p>💸 Argent : <span id="money">0</span></p>
@@ -39,35 +60,50 @@
           <h2>🔧 Améliorations disponibles</h2>
           <div id="upgrades-list"></div>
         </div>
-        <div class="stats">
-          <h2>📊 Statistiques du joueur</h2>
-          <div class="gauge-label">💖 Amour de la bien-aimée</div>
-          <div class="gauge">
-            <div class="gauge-bar" id="gauge-loveBeloved"></div>
-            <span class="gauge-value" id="loveBeloved">100</span>
-          </div>
 
-          <div class="gauge-label">🍔 Faim</div>
-          <div class="gauge">
-            <div class="gauge-bar" id="gauge-hunger"></div>
-            <span class="gauge-value" id="hunger">100</span>
-          </div>
+        <div class="container-stats-inventory">
+          <div class="stats">
+            <h2>📊 Statistiques du joueur</h2>
+            <div class="gauge-label">💖 Amour de la bien-aimée</div>
+            <div class="gauge">
+              <div class="gauge-bar" id="gauge-loveBeloved"></div>
+              <span class="gauge-value" id="loveBeloved">100</span>
+            </div>
 
-          <div class="gauge-label">😴 Sommeil</div>
-          <div class="gauge">
-            <div class="gauge-bar" id="gauge-sleep"></div>
-            <span class="gauge-value" id="sleep">100</span>
-          </div>
+            <div class="gauge-label">🍔 Faim</div>
+            <div class="gauge">
+              <div class="gauge-bar" id="gauge-hunger"></div>
+              <span class="gauge-value" id="hunger">100</span>
+            </div>
 
-          <div class="gauge-label">😊 Bonheur</div>
-          <div class="gauge">
-            <div class="gauge-bar" id="gauge-happiness"></div>
-            <span class="gauge-value" id="happiness">100</span>
+            <div class="gauge-label">😴 Sommeil</div>
+            <div class="gauge">
+              <div class="gauge-bar" id="gauge-sleep"></div>
+              <span class="gauge-value" id="sleep">100</span>
+            </div>
+
+            <div class="gauge-label">😊 Bonheur</div>
+            <div class="gauge">
+              <div class="gauge-bar" id="gauge-happiness"></div>
+              <span class="gauge-value" id="happiness">100</span>
+            </div>
+          </div>
+          <div class="shop">
+            <h2>🛒Boutique</h2>
+            <button id="buyFoodBtn">Acheter à manger</button>
+            <button id="buyFoodBtn">Acheter des objets</button>
+          </div>
+          <div class="inventory">
+            <h2>📦 Inventaire</h2>
           </div>
         </div>
       </div>
-      <!-- BOUTON DE SAUVEGARDE ET QUITTER -->
-      <button id="saveQuitBtn">💾 Sauvegarder et quitter</button>
+      <div class="boutons-actions hidden" id="bouttonActions">
+        <button id="saveQuitBtn">💾 Sauvegarder et quitter</button>
+        <button id="settingsBtn">⚙️ Paramètres</button>
+        <button id="resetBtn">🔄 Réinitialiser le jeu</button>
+        <button id="exitBtn">❌ Quitter le jeu</button>
+      </div>
       <div class="footer">
         <p>
           Made with ❤️ by

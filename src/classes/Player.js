@@ -1,3 +1,4 @@
+import { Upgrades } from "./Upgrades.js";
 import { upgrades } from "./Upgrades.js";
 
 export class Player {

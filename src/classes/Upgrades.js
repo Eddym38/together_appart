@@ -1,9 +1,20 @@
 //Classe concernant les améliorations
 //Classe abstracte pour les améliorations
 // Elle ne peut pas être instanciée directement, mais sert de base pour d'autres classes
-export class Upgrades {
+class Upgrades {
   constructor() {
+    if (new.target === Upgrades) {
+      throw new TypeError("Cannot construct Upgrades instances directly");
+    }
     this.upgrades = [];
+    this.name = "Améliorations";
+    this.description = "Améliorations disponibles pour le joueur.";
+    this.costMoney = 0; // Coût en argent pour débloquer cette catégorie
+    this.costResearch = 0; // Coût en points de recherche pour débloquer cette catégorie
+    this.charactersPerClick = 0; // Caractères générés par clic
+    this.lovePerSecond = 0; // Amour généré par seconde
+    this.bought = false; // Indique si cette amélioration a été achetée
+    this.id = "upgrades"; // Identifiant unique pour cette amélioration
   }
 
   // Méthode pour ajouter une amélioration
@@ -31,7 +42,7 @@ export class Upgrades {
   }
 }
 
-class pigeon extends Upgrades {
+class Pigeon extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -47,7 +58,7 @@ class pigeon extends Upgrades {
   }
 }
 
-class lettre extends Upgrades {
+class Lettre extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -63,7 +74,7 @@ class lettre extends Upgrades {
   }
 }
 
-class fax extends Upgrades {
+class Fax extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -79,7 +90,7 @@ class fax extends Upgrades {
   }
 }
 
-class clavier extends Upgrades {
+class Clavier extends Upgrades {
   constructor(parameters) {
     super();
     this.addUpgrade({
@@ -95,7 +106,7 @@ class clavier extends Upgrades {
   }
 }
 
-class appel_voicemail extends Upgrades {
+class AppelVoicemail extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -111,7 +122,7 @@ class appel_voicemail extends Upgrades {
   }
 }
 
-class appel_5g extends Upgrades {
+class Appel5g extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -127,7 +138,7 @@ class appel_5g extends Upgrades {
   }
 }
 
-class chatgpt extends Upgrades {
+class ChatGPT extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -143,7 +154,7 @@ class chatgpt extends Upgrades {
   }
 }
 
-class satellite extends Upgrades {
+class Satellite extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -159,7 +170,7 @@ class satellite extends Upgrades {
   }
 }
 
-class drone extends Upgrades {
+class Drone extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -175,7 +186,7 @@ class drone extends Upgrades {
   }
 }
 
-class robot extends Upgrades {
+class Robot extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -191,7 +202,7 @@ class robot extends Upgrades {
   }
 }
 
-class telepathie extends Upgrades {
+class Telepathie extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -207,7 +218,7 @@ class telepathie extends Upgrades {
   }
 }
 
-class voyage extends Upgrades {
+class Voyage extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -223,7 +234,7 @@ class voyage extends Upgrades {
   }
 }
 
-class teleportation extends Upgrades {
+class Teleportation extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -239,7 +250,7 @@ class teleportation extends Upgrades {
   }
 }
 
-class machine_a_filtre extends Upgrades {
+class MachineAFiltre extends Upgrades {
   constructor() {
     super();
     this.addUpgrade({
@@ -254,3 +265,40 @@ class machine_a_filtre extends Upgrades {
     });
   }
 }
+
+//Tableau d'améliorations
+export const upgrades = [
+  new Pigeon(),
+  new Lettre(),
+  new Fax(),
+  new Clavier(),
+  new AppelVoicemail(),
+  new Appel5g(),
+  new ChatGPT(),
+  new Satellite(),
+  new Drone(),
+  new Robot(),
+  new Telepathie(),
+  new Voyage(),
+  new Teleportation(),
+  new MachineAFiltre(),
+];
+
+// Exporter les classes d'améliorations
+export {
+  Upgrades,
+  Pigeon,
+  Lettre,
+  Fax,
+  Clavier,
+  AppelVoicemail,
+  Appel5g,
+  ChatGPT,
+  Satellite,
+  Drone,
+  Robot,
+  Telepathie,
+  Voyage,
+  Teleportation,
+  MachineAFiltre,
+};

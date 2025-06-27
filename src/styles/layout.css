@@ -1,0 +1,30 @@
+.container {
+  background-color: #f8edeb;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  text-align: center;
+}
+
+/* Ajoute sur le parent des deux blocs */
+.page-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Le bloc principal du jeu */
+.main {
+  flex: 1 1 0;
+  max-width: 400px;
+}
+
+.footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #666;
+}

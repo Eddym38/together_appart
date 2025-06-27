@@ -1,0 +1,18 @@
+.message-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 2px dashed #ccc;
+  background-color: #fdfdfd;
+  min-height: 100px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+  border-radius: 1rem;
+}
+
+.message-text {
+  font-size: 1rem;
+  color: #444;
+}
+.message-text strong {
+  color: #d81b60;
+}

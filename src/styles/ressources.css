@@ -1,0 +1,16 @@
+.resources {
+  text-align: left;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fce4ec;
+}
+.resources h2 {
+  font-size: 1.5rem;
+  color: #d81b60;
+  margin-bottom: 0.5rem;
+}
+.resources ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}

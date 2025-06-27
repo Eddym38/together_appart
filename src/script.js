@@ -1,4 +1,5 @@
 import { messagesPredefinis } from "./messages.js";
+import { Upgrades } from "./classes/Upgrades.js";
 import { upgrades } from "./classes/Upgrades.js";
 import { Player } from "./classes/Player.js";
 import { savePlayer, loadPlayer } from "./save.js";
@@ -25,11 +26,27 @@ const loveBelovedEl = document.getElementById("loveBeloved");
 const hungerEl = document.getElementById("hunger");
 const sleepEl = document.getElementById("sleep");
 const happinessEl = document.getElementById("happiness");
+const startBtn = document.getElementById("startBtn");
+const loadBtn = document.getElementById("loadBtn");
+const menuEl = document.getElementById("menu");
+const bouttonActionsEl = document.getElementById("bouttonActions");
+const pageLayoutEl = document.querySelector(".page-layout");
 
 const writeBtn = document.getElementById("writeBtn");
 const workBtn = document.getElementById("workBtn");
 const researchBtn = document.getElementById("researchBtn");
 const saveQuitBtn = document.getElementById("saveQuitBtn");
+
+startBtn.addEventListener("click", () => {
+  console.log("startBtn clicked");
+  menuEl.classList.add("hidden"); // Cacher le menu
+
+  // ... cacher les autres boutons du menu si besoin
+  // ... afficher le jeu, initialiser la partie, etc.
+  pageLayoutEl.classList.remove("hidden"); // Afficher la page de jeu
+  bouttonActionsEl.classList.remove("hidden"); // Afficher les boutons d'actions
+  updateDisplay(); // Mettre à jour l'affichage initial
+});
 
 // --- FONCTIONS ---
 function updateDisplay() {
@@ -127,9 +144,15 @@ function renderUpgrades() {
     const div = document.createElement("div");
     div.className = "upgrade-item";
 
+    // Affichage du nom, description et quantité possédée
     const nameDesc = document.createElement("div");
-    nameDesc.innerHTML = `<strong>${upgrade.name}</strong><br><small>${upgrade.description}</small>`;
+    nameDesc.innerHTML = `
+      <strong>${upgrade.name}</strong><br>
+      <small>${upgrade.description}</small><br>
+      <span>Quantité : ${player.upgrades[upgrade.id] || 0}</span>
+    `;
 
+    // Bouton d'achat
     const btn = document.createElement("button");
     btn.textContent = upgrade.bought
       ? "✅ Acheté"

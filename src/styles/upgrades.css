@@ -1,0 +1,61 @@
+/* Le bloc upgrades */
+.upgrades {
+  background-color: #fce4ec;
+  min-width: 250px;
+  max-width: 300px;
+  border: 2px solid #eee;
+  padding: 2rem;
+  margin-top: 0; /* retire le margin-top si besoin */
+}
+.upgrades h2 {
+  font-size: 1.5rem;
+  color: #d81b60;
+  margin-bottom: 1rem;
+}
+.upgrades p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+.upgrades ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.upgrade-btn {
+  display: block;
+  width: 100%;
+  background-color: #f8edeb;
+  color: #d81b60;
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upgrade-btn:hover {
+  background-color: #4a148c;
+}
+
+.upgrade-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.upgrade-item button {
+  padding: 0.3rem 0.6rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.upgrade-item button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
