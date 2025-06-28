@@ -8,33 +8,37 @@
   </head>
   <body>
     <div class="container">
+      <h1 class="menu-title">Together, Apart 💌</h1>
+
       <!-- TITRE DU JEU -->
-      <h1>Together, Apart 💌</h1>
       <div class="menu" id="menu">
-        <p class="subtitle">Un jeu de simulation de vie et d'amour</p>
+        <p class="subtitle">Un clicker de vie et d'amour à distance</p>
         <!-- DESCRIPTION DU JEU -->
         <p class="description">
-          Dans ce jeu, vous devez écrire des messages pour séduire votre
-          bien-aimée tout en gérant vos ressources. Écrivez des caractères,
-          gagnez de l'argent, faites de la recherche et améliorez-vous pour
-          gagner son cœur.
+          Écrivez des messages, améliorez vos compétences et gérez vos
+          ressources pour conquérir le cœur de votre bien-aimée.<br />
+          <span style="color: #d81b60; font-weight: 600"
+            >Jouez, progressez, aimez !</span
+          >
         </p>
-        <!-- BOUTON POUR COMMENCER OU CONTINUER -->
-        <button id="startBtn">🎮 Commencer ou continuer</button>
-        <!-- BOUTON POUR CHARGER UNE PARTIE -->
-        <button id="loadBtn">📂 Charger une partie</button>
-        <!-- BOUTON POUR AFFICHER LES RÈGLES -->
-        <button id="rulesBtn">📜 Règles du jeu</button>
-        <!-- BOUTON POUR AFFICHER LES CRÉDITS -->
-        <button id="creditsBtn">👥 Crédits</button>
-        <!-- BOUTON POUR AFFICHER LES PARAMÈTRES -->
-        <button id="settingsBtn">⚙️ Paramètres</button>
+        <div class="menu-buttons">
+          <!-- BOUTON POUR COMMENCER OU CONTINUER -->
+          <button id="startBtn">🎮 Commencer ou continuer</button>
+          <!-- BOUTON POUR CHARGER UNE PARTIE -->
+          <button id="loadBtn">📂 Charger une partie</button>
+          <!-- BOUTON POUR AFFICHER LES RÈGLES -->
+          <button id="rulesBtn">📜 Règles du jeu</button>
+          <!-- BOUTON POUR AFFICHER LES CRÉDITS -->
+          <button id="creditsBtn">👥 Crédits</button>
+          <!-- BOUTON POUR AFFICHER LES PARAMÈTRES -->
+          <button id="settingsBtn">⚙️ Paramètres</button>
+        </div>
       </div>
 
       <div class="page-layout hidden">
         <div class="main">
           <!-- BARRRES DE RESSOURCES -->
-          <div class="resources">
+          <div class="resources base-element">
             <h2>📊 Ressources</h2>
             <p>✍️ Caractères écrits : <span id="characters">0</span></p>
             <p>💕 Amour : <span id="love">0</span></p>
@@ -55,15 +59,52 @@
             <h2>📨 Message en cours :</h2>
             <p id="currentMessage" class="message-text"></p>
           </div>
+          <!--Statistique du joueur-->
+          <div class="stats base-element">
+            <h2>📈 Statistiques du joueur</h2>
+            <button id="toggleStatsBtn">
+              Afficher/Masquer les statistiques
+            </button>
+            <div class="stats-container">
+              <!--Click-->
+              <p>Caractères écrits : <span id="totalCharacters">0</span></p>
+              <p>
+                Caractères par click : <span id="charactersPerClick">0</span>
+              </p>
+              <p>
+                Caractères par seconde :
+                <span id="charactersPerSeconde">0</span>
+              </p>
+              <!--Amour-->
+              <p>Amour gagné : <span id="totalLove">0</span></p>
+              <p>Amour par click : <span id="lovePerClick">0</span></p>
+              <p>Amour par seconde : <span id="lovePerSecond">0</span></p>
+              <!--Nourriture-->
+              <p>Nourriture gagnée : <span id="totalFood">0</span></p>
+              <p>Nourriture par click : <span id="foodPerClick">0 </span></p>
+              <p>Nourriture par seconde : <span id="foodPerSecond">0</span></p>
+              <!--Argent-->
+              <p>Argent gagné : <span id="totalMoney">0</span></p>
+              <p>Argent par click : <span id="moneyPerClick">0</span></p>
+              <p>Argent par seconde : <span id="moneyPerSecond">0</span></p>
+              <!--Recherche-->
+              <p>Recherche gagnée : <span id="totalResearchPoints">0</span></p>
+              <p>Recherche par click : <span id="researchPerClick">0</span></p>
+              <p>
+                Recherche par seconde : <span id="researchPerSecond">0</span>
+              </p>
+            </div>
+          </div>
         </div>
         <div class="upgrades">
           <h2>🔧 Améliorations disponibles</h2>
           <div id="upgrades-list"></div>
         </div>
 
-        <div class="container-stats-inventory">
-          <div class="stats">
-            <h2>📊 Statistiques du joueur</h2>
+        <div class="container-status-inventory">
+          <div class="status base-element">
+            <!-- Etat du joueur-->
+            <h2>🧑 État du joueur</h2>
             <div class="gauge-label">💖 Amour de la bien-aimée</div>
             <div class="gauge">
               <div class="gauge-bar" id="gauge-loveBeloved"></div>
@@ -88,30 +129,117 @@
               <span class="gauge-value" id="happiness">100</span>
             </div>
           </div>
-          <div class="shop">
+          <div class="shop base-element">
             <h2>🛒Boutique</h2>
             <button id="buyFoodBtn">Acheter à manger</button>
             <button id="buyFoodBtn">Acheter des objets</button>
           </div>
-          <div class="inventory">
+          <div class="inventory base-element">
             <h2>📦 Inventaire</h2>
           </div>
         </div>
       </div>
       <div class="boutons-actions hidden" id="bouttonActions">
         <button id="saveQuitBtn">💾 Sauvegarder et quitter</button>
-        <button id="settingsBtn">⚙️ Paramètres</button>
+        <button id="settingsBtnGame">⚙️ Paramètres</button>
         <button id="resetBtn">🔄 Réinitialiser le jeu</button>
-        <button id="exitBtn">❌ Quitter le jeu</button>
       </div>
       <div class="footer">
         <p>
           Made with ❤️ by
           <a href="https://github.com/Eddym38" target="_blank">Eddy</a>
         </p>
+        <!-- Ajout de la version et d'informations sur le jeu-->
+        <p>
+          Version 1.0.0 - Ensemble, mais séparés
+          <br />
+          Un jeu de simulation de vie et d'amour
+        </p>
       </div>
     </div>
 
-    <script type="module" src="../src/script.js"></script>
+    <div id="settingsModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeSettingsBtn">&times;</span>
+        <h2>⚙️ Paramètres</h2>
+        <div class="settings-group">
+          <label>
+            <input type="checkbox" id="musicToggle" checked />
+            Musique d'ambiance
+          </label>
+          <input
+            type="range"
+            id="musicVolume"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.5"
+          />
+        </div>
+        <div class="settings-group">
+          <label>
+            <input type="checkbox" id="sfxToggle" checked />
+            Effets sonores
+          </label>
+          <input
+            type="range"
+            id="sfxVolume"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.7"
+          />
+        </div>
+        <div class="settings-group">
+          <label for="themeSelect">Thème :</label>
+          <select id="themeSelect">
+            <option value="clair">Clair</option>
+            <option value="sombre">Sombre</option>
+          </select>
+        </div>
+        <div class="settings-group">
+          <button id="resetSettingsBtn">Réinitialiser les paramètres</button>
+        </div>
+        <div class="settings-group">
+          <button id="backToMenuBtn">Retour au menu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal pour les règles du jeu -->
+    <div id="rulesModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeRulesBtn">&times;</span>
+        <h2>📜 Règles du jeu</h2>
+        <p>
+          Bienvenue dans "Together, Apart" ! Voici les règles pour vous aider à
+          démarrer :
+        </p>
+        <ul>
+          <li>Écrivez des caractères pour gagner de l'amour et de l'argent.</li>
+          <li>
+            Utilisez l'argent pour acheter de la nourriture et des objets.
+          </li>
+          <li>Faites de la recherche pour débloquer des améliorations.</li>
+          <li>Gérez votre faim, votre sommeil et votre bonheur.</li>
+          <li>Améliorez vos compétences pour progresser plus rapidement.</li>
+        </ul>
+        <p>Bonne chance et amusez-vous bien !</p>
+      </div>
+    </div>
+
+    <!-- Modal pour les credits-->
+    <div id="creditsModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeCreditsBtn">&times;</span>
+        <h2>👥 Crédits</h2>
+        <p>Développé par Eddy</p>
+        <p>Graphismes par Eddy</p>
+        <p>Musique par Eddy</p>
+        <p>Merci à tous ceux qui ont contribué à ce projet !</p>
+      </div>
+    </div>
+
+    <script type="module" src="../src/js/script.js"></script>
   </body>
 </html>

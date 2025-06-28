@@ -1,61 +1,148 @@
-/* Le bloc upgrades */
+/* Bloc upgrades */
 .upgrades {
   background-color: #fce4ec;
-  min-width: 250px;
-  max-width: 300px;
-  border: 2px solid #eee;
-  padding: 2rem;
-  margin-top: 0; /* retire le margin-top si besoin */
+  min-width: 300px;
+  max-width: 420px;
+  border-radius: 10px;
+  border: 2px solid #f8bbd0;
+  padding: 2rem 1.5rem;
+  margin-top: 0;
+  box-shadow: 0 2px 12px rgba(216, 27, 96, 0.07);
+  display: flex;
+  flex-direction: column;
+  /* Pas de scroll ici */
+  max-height: 800px; /* ou auto, selon ton layout */
+  height: 100%; /* Pour que ça prenne toute la hauteur disponible */
 }
+
 .upgrades h2 {
   font-size: 1.5rem;
   color: #d81b60;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
+
+/* Pour Chrome, Edge, Safari */
+.upgrades::-webkit-scrollbar {
+  width: 16px;
+  background: #fce4ec;
+  border-radius: 10px;
+}
+
+.upgrades::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #d81b60 60%, #f8bbd0 100%);
+  border-radius: 10px;
+  border: 3px solid #fce4ec;
+}
+
+.upgrades::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ad1457 60%, #f8bbd0 100%);
+}
+
+.upgrades::-webkit-scrollbar-track {
+  background: #fce4ec;
+  border-radius: 10px;
+}
+
 .upgrades p {
   font-size: 1rem;
   color: #666;
   margin-bottom: 1.5rem;
 }
+
 .upgrades ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.upgrade-btn {
-  display: block;
-  width: 100%;
-  background-color: #f8edeb;
-  color: #d81b60;
-  border: none;
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.upgrade-btn:hover {
-  background-color: #4a148c;
-}
-
 .upgrade-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.6rem;
-  padding: 0.3rem 0;
-  border-bottom: 1px solid #ddd;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 7px;
+  background: #fff;
+  border: 1.5px solid #f8bbd0;
+  box-shadow: 0 1px 4px rgba(216, 27, 96, 0.03);
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+  position: relative;
+  min-width: 220px;
 }
 
-.upgrade-item button {
-  padding: 0.3rem 0.6rem;
-  font-weight: bold;
-  cursor: pointer;
+.upgrade-item:hover {
+  box-shadow: 0 2px 12px rgba(216, 27, 96, 0.13);
+  border-color: #d81b60;
+  background: #fce4ec;
 }
 
-.upgrade-item button:disabled {
-  cursor: not-allowed;
+.upgrade-item.disabled {
   opacity: 0.5;
+  pointer-events: none;
+  background: #f8bbd0;
+}
+
+.upgrade-item div {
+  flex: 1 1 auto;
+}
+
+.upgrade-item strong {
+  color: #d81b60;
+  font-size: 1.08em;
+}
+
+.upgrade-item span {
+  color: #555;
+  font-size: 0.98em;
+}
+
+/* Ajoute dans upgrades.css */
+.upgrade-costs {
+  margin-top: 0.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.98em;
+  color: #444;
+  align-items: flex-start;
+}
+
+.upgrade-costs span {
+  display: block;
+  min-width: 110px;
+  font-variant-numeric: tabular-nums;
+  padding-left: 0.2em;
+}
+
+/* Pour que la liste prenne bien toute la hauteur scrollable */
+#upgrades-list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  width: 100%;
+  /* Scrollbar personnalisée */
+  scrollbar-width: thick;
+  scrollbar-color: #d81b60 #fce4ec;
+}
+
+#upgrades-list::-webkit-scrollbar {
+  width: 16px;
+  background: #fce4ec;
+  border-radius: 10px;
+}
+
+#upgrades-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #d81b60 60%, #f8bbd0 100%);
+  border-radius: 10px;
+  border: 3px solid #fce4ec;
+}
+
+#upgrades-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ad1457 60%, #f8bbd0 100%);
+}
+
+#upgrades-list::-webkit-scrollbar-track {
+  background: #fce4ec;
+  border-radius: 10px;
 }

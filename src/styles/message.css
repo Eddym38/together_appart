@@ -1,18 +1,77 @@
 .message-box {
   margin-top: 2rem;
-  padding: 1rem;
-  border: 2px dashed #ccc;
-  background-color: #fdfdfd;
-  min-height: 100px;
+  padding: 1.2rem 1.5rem;
+  border: 2px dashed #d81b60;
+  background-color: #fff0f6;
+  min-height: 110px;
   font-family: "Courier New", monospace;
   white-space: pre-wrap;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px rgba(216, 27, 96, 0.07);
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.message-box.sending {
+  animation: sendMessageAnim 0.7s cubic-bezier(0.4, 2, 0.6, 1) 1;
+  box-shadow: 0 0 0 4px #f8bbd0;
+}
+
+@keyframes sendMessageAnim {
+  0% {
+    box-shadow: 0 0 0 0 #d81b60;
+    transform: scale(1);
+    background-color: #fff0f6;
+  }
+  60% {
+    box-shadow: 0 0 0 12px #f8bbd0;
+    transform: scale(1.03);
+    background-color: #ffe3ec;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #d81b60;
+    transform: scale(1);
+    background-color: #fff0f6;
+  }
 }
 
 .message-text {
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: #444;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  min-height: 2.5em;
+  transition: color 0.2s;
 }
+
 .message-text strong {
   color: #d81b60;
+  font-weight: bold;
+}
+
+/* Optionnel : effet d'apparition lettre par lettre */
+.message-text.animated {
+  overflow: hidden;
+  display: inline-block;
+  white-space: pre;
+  border-right: 2px solid #d81b60;
+  animation: typing 1.2s steps(30, end), blink-caret 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink-caret {
+  0%,
+  100% {
+    border-color: #d81b60;
+  }
+  50% {
+    border-color: transparent;
+  }
 }

@@ -1,5 +1,5 @@
 //Code concernant la sauvegarde et le chargement du joueur
-import { Player } from "./classes/Player.js";
+import { Player } from "../classes/Player.js";
 export function savePlayer(player) {
   localStorage.setItem("player", JSON.stringify(player.toJSON()));
 }

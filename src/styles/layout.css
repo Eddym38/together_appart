@@ -4,7 +4,7 @@
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 
@@ -15,6 +15,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
+  /* Ajoute cette ligne pour que tous les enfants prennent la même hauteur */
+  align-items: stretch;
+  height: 100%;
+  min-height: 0;
 }
 
 /* Le bloc principal du jeu */
@@ -27,4 +31,25 @@
   margin-top: 2rem;
   font-size: 0.9rem;
   color: #666;
+}
+
+.base-element {
+  background-color: #fce4ec;
+  min-width: 300px;
+  max-width: 420px;
+  border-radius: 10px;
+  border: 2px solid #f8bbd0;
+  padding: 2rem 1.5rem;
+  margin-top: 0;
+  box-shadow: 0 2px 12px rgba(216, 27, 96, 0.07);
+}
+
+/* Pour chaque bloc latéral (stats, upgrades, inventaire) */
+.stats,
+.upgrades,
+.inventory {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }

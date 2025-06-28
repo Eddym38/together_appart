@@ -3,8 +3,12 @@
 @import url("buttons.css");
 @import url("gauges.css");
 @import url("upgrades.css");
-@import url("stats.css");
+@import url("status.css");
 @import url("message.css");
 @import url("shop.css");
 @import url("inventory.css");
 @import url("ressources.css");
+@import url("stats.css");
+@import url("footer.css");
+@import url("menu.css");
+@import url("settings.css");

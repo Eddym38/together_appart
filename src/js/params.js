@@ -1,0 +1,13 @@
+export const DEFAULT_CHARS_PER_CLICK = 1;
+export const DEFAULT_LOVE_PER_SECOND = 0;
+export const DEFAULT_LOVE_PER_MESSAGE = 5;
+export const DEFAULT_MONEY_PER_WORK = 10;
+export const DEFAULT_RESEARCH_COST = 5;
+export const DEFAULT_RESEARCH_PER_CLICK = 1;
+export const HUNGER_DECREASE_RATE = 0.1;
+export const SLEEP_DECREASE_RATE = 0.1;
+export const HAPPINESS_DECREASE_RATE = 0.1;
+export const ENERGY_DECREASE_RATE = 0.1;
+export const MONEY_PER_SECOND = 0;
+export const RESEARCH_POINTS_PER_SECOND = 0;
+export const LOVE_FROM_BELOVED_PER_SECOND = 0;

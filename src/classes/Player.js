@@ -1,12 +1,16 @@
-import { Upgrades } from "./Upgrades.js";
+import { Upgrade } from "./Upgrades.js";
 import { upgrades } from "./Upgrades.js";
 
 export class Player {
   constructor(data = {}) {
     this.characters = data.characters || 0;
-    this.love = data.love || 0;
-    this.money = data.money || 0;
-    this.researchPoints = data.researchPoints || 0;
+    this.allTimeCharacters = data.allTimeCharacters || 0;
+    this.love = data.love || 100;
+    this.allTimeLove = data.allTimeLove || 0;
+    this.money = data.money || 100;
+    this.allTimeMoney = data.allTimeMoney || 0;
+    this.researchPoints = data.researchPoints || 1000;
+    this.allTimeResearchPoints = data.allTimeResearchPoints || 0;
     this.energy = data.energy || 10;
     this.loveFromBeloved = data.loveFromBeloved || 100;
     this.hunger = data.hunger || 100;
