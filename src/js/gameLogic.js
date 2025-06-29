@@ -3,6 +3,7 @@ import { messagesPredefinis } from "./messages.js";
 import { upgrades } from "../classes/Upgrades.js";
 import * as dom from "./dom.js";
 import { jobs } from "../classes/Jobs.js";
+import { showComboBadge } from "./messages.js";
 
 let currentMessageIndex = 0;
 let currentMessageText = messagesPredefinis[currentMessageIndex];
@@ -171,30 +172,49 @@ export function computeResearchPerClick(player, upgrades) {
 }
 
 export function writeCharacter(player, upgrades) {
-  console.log("writeCharacter called", {
-    currentTypedText,
-    currentMessageText,
-  });
-  if (currentTypedText.length >= currentMessageText.length) return;
-  console.log(computeCharactersPerClick(player, upgrades), player.characters);
-  player.characters += computeCharactersPerClick(player, upgrades);
-  player.allTimeCharacters += computeCharactersPerClick(player, upgrades);
+  const charsPerClick = computeCharactersPerClick(player, upgrades);
+  const charsLeft = currentMessageText.length - currentTypedText.length;
 
-  // Animation emoji tous les 5 caractères écrits (modifiable)
-  emojiCounter += computeCharactersPerClick(player, upgrades);
-  if (emojiCounter >= 5) {
-    spawnFlyingMessageEmoji();
-    emojiCounter = 0;
-  }
+  // Si on dépasse la longueur du message, on termine le message d'un coup
+  const charsToWrite = Math.min(charsPerClick, charsLeft);
 
-  // Ajouter un caractère du message actuel à la zone visible
-  let nextChar = currentMessageText[currentTypedText.length] || " ";
-  currentTypedText += nextChar;
+  // Ajoute tous les caractères d'un coup
+  currentTypedText += currentMessageText.slice(
+    currentTypedText.length,
+    currentTypedText.length + charsToWrite
+  );
   document.getElementById("currentMessage").textContent = currentTypedText;
 
-  if (currentTypedText.length >= currentMessageText.length) {
-    console.log("Message terminé, checkMessageSent");
-    checkMessageSent(player); // si on a fini d’écrire le message
+  player.characters += charsToWrite;
+  player.allTimeCharacters += charsToWrite;
+
+  // Animation emoji tous les 5 caractères écrits (modifiable)
+  emojiCounter += charsToWrite;
+  while (emojiCounter >= 5) {
+    spawnFlyingMessageEmoji();
+    emojiCounter -= 5;
+  }
+
+  // Si le message est terminé, on envoie plusieurs messages d'un coup si charsPerClick > message.length
+  let messagesSent = 0;
+  while (
+    currentTypedText.length >= currentMessageText.length &&
+    player.characters >= currentMessageText.length
+  ) {
+    checkMessageSent(player);
+    messagesSent++;
+    // Si charsPerClick est très grand, on boucle pour envoyer plusieurs messages d'un coup
+    if (player.characters < currentMessageText.length) break;
+    // On continue tant qu'on a assez de caractères pour finir un message
+  }
+
+  // Affiche un badge combo si plusieurs messages envoyés
+  if (messagesSent > 1) {
+    showComboBadge(messagesSent);
+    // Explosion d'emojis
+    for (let i = 0; i < messagesSent; i++) {
+      spawnFlyingMessageEmoji();
+    }
   }
 
   dom.updateDisplay(player, upgrades, buyUpgrade);

@@ -16,3 +16,11 @@ export const messagesPredefinis = [
   "Chaque mot que j’écris est pour toi, mon amour.",
   "Je t’envoie des étoiles pour illuminer ta journée ✨",
 ];
+
+export function showComboBadge(count) {
+  const badge = document.createElement("div");
+  badge.className = "combo-badge";
+  badge.textContent = `🔥 x${count} messages !`;
+  document.body.appendChild(badge);
+  setTimeout(() => badge.remove(), 1200);
+}

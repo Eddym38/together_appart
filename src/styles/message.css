@@ -103,3 +103,38 @@
     border-color: transparent;
   }
 }
+
+.combo-badge {
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%) scale(1.2);
+  background: #fff0f6;
+  color: #d81b60;
+  border: 3px solid #d81b60;
+  border-radius: 18px;
+  font-size: 2.2rem;
+  font-weight: bold;
+  padding: 1rem 2.5rem;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(216, 27, 96, 0.18);
+  animation: comboPop 1.2s cubic-bezier(0.4, 2, 0.6, 1) forwards;
+  pointer-events: none;
+}
+@keyframes comboPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}

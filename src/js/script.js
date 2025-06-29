@@ -5,6 +5,7 @@ import { buyUpgrade, computeLovePerSecond } from "./gameLogic.js";
 import { bindEvents, bindSettingsEvents } from "./events.js";
 import { bindJobSelection } from "./jobSelection.js";
 import { bindFoodShop } from "./foodShop.js";
+import { bindItemShop } from "./itemShop.js";
 import * as gameLogic from "./gameLogic.js";
 import { renderInventory } from "./inventory.js";
 
@@ -15,6 +16,7 @@ bindEvents(player, upgrades);
 bindSettingsEvents();
 bindJobSelection(player, upgrades);
 bindFoodShop(player, upgrades);
+bindItemShop(player, upgrades);
 renderInventory(player);
 
 let gameRunning = false;

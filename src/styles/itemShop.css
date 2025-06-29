@@ -1,0 +1,56 @@
+#itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.item-choice {
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fff0f6;
+  border: 2px solid #f8bbd0;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.item-choice:hover {
+  background: #f8bbd0;
+  border: 2px solid #d81b60;
+}
+.item-choice .item-desc {
+  font-size: 0.95em;
+  color: #ad1457;
+}
+
+/* Ajoute dans ton CSS global */
+.item-purchase-anim {
+  position: fixed;
+  z-index: 2000;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d81b60;
+  background: #fff0f6;
+  border: 2px solid #f8bbd0;
+  border-radius: 16px;
+  padding: 0.7em 1.5em;
+  pointer-events: none;
+  opacity: 1;
+  animation: itemPop 1.2s cubic-bezier(0.4, 2, 0.6, 1);
+}
+
+@keyframes itemPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -60%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -80%) scale(0.9);
+  }
+}

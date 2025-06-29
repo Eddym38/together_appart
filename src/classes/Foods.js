@@ -36,6 +36,7 @@ export const foods = [
     id: "cafe",
     name: "Café ☕",
     price: 15,
+    hunger: 0,
     thirst: 5,
     energy: 20,
     stress: 5,

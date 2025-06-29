@@ -22,11 +22,7 @@ export class Player {
     this.strength = data.strength || 100;
     this.stress = data.stress || 0;
     this.inventory = {
-      food: {
-        sandwich: 2,
-        pizza: 1,
-        gateau: 3,
-      },
+      food: {},
       // Tu pourras ajouter d'autres catégories plus tard (objets, etc.)
     };
     this.currentJobId = data.currentJobId || "livreur"; // ID du job actuel
