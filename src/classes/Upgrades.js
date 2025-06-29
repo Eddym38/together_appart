@@ -20,7 +20,6 @@ class Upgrade {
     this.baseCostResearch = baseCostResearch; // Coût de base en points de recherche
     this.multiplier = multiplier; // Coût multiplicatif à chaque achat
     this.isUnique = isUnique;
-    this.level = 0;
     this.maxLevel = isUnique ? 1 : maxLevel;
     this.charactersPerClick = charactersPerClick;
     this.lovePerSecond = lovePerSecond; // Amour gagné par seconde
@@ -28,32 +27,32 @@ class Upgrade {
     this.bought = false; // Indique si l'amélioration a été achetée
   }
 
-  get currentCostMoney() {
-    return Math.floor(
-      this.baseCostMoney * Math.pow(this.multiplier, this.level)
-    );
+  currentCostMoney(level = 0) {
+    return Math.floor(this.baseCostMoney * Math.pow(this.multiplier, level));
   }
 
-  get currentCostResearch() {
-    return Math.floor(
-      this.baseCostResearch * Math.pow(this.multiplier, this.level)
-    );
+  currentCostResearch(level = 0) {
+    return Math.floor(this.baseCostResearch * Math.pow(this.multiplier, level));
   }
 
   canPurchase(player) {
+    const level = player.upgrades[this.id] || 0;
     return (
-      this.level < this.maxLevel &&
-      player.money >= this.currentCostMoney &&
-      player.researchPoints >= this.currentCostResearch
+      level < this.maxLevel &&
+      player.money >= this.currentCostMoney(level) &&
+      player.researchPoints >= this.currentCostResearch(level)
     );
   }
 
   purchase(player) {
+    const level = player.upgrades[this.id] || 0;
     if (this.canPurchase(player)) {
-      player.money -= this.currentCostMoney;
-      player.researchPoints -= this.currentCostResearch;
-      this.bought = true; // Marquer l'amélioration comme achetée
-      this.level++;
+      player.money -= this.currentCostMoney(level);
+      player.researchPoints -= this.currentCostResearch(level);
+      player.upgrades[this.id] = level + 1;
+      if (this.isUnique) {
+        this.bought = true;
+      }
     } else {
       throw new Error("Cannot purchase this upgrade: insufficient resources.");
     }

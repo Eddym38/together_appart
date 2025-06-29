@@ -1,15 +1,16 @@
 import * as gameLogic from "./gameLogic.js";
 import * as dom from "./dom.js";
-import { upgrades } from "../classes/Upgrades.js";
 import { savePlayer, loadPlayer } from "./save.js";
+import { startGame } from "./script.js";
 
 // --- INIT ---
 console.log("Script chargé, initialisation...");
 
 export function bindEvents(player, upgrades) {
-  dom.writeBtn.addEventListener("click", () =>
+  dom.messageBox.addEventListener("click", () =>
     gameLogic.writeCharacter(player, upgrades)
   );
+
   dom.creditsBtnEl.addEventListener("click", () => {
     dom.showCredits();
     console.log("Crédits affichés");
@@ -34,15 +35,46 @@ export function bindEvents(player, upgrades) {
     dom.pageLayoutEl.classList.remove("hidden");
     dom.bouttonActionsEl.classList.remove("hidden");
     dom.menuEl.classList.add("hidden");
+    startGame(player, upgrades);
+    console.log("Démarrage du jeu");
+  });
+  dom.resetBtn.addEventListener("click", () => {
+    if (confirm("Êtes-vous sûr de vouloir réinitialiser le jeu ?")) {
+      localStorage.removeItem("player");
+      alert("Jeu réinitialisé !");
+      // Retour au menu
+      dom.showMenu();
+      console.log("Jeu réinitialisé, retour au menu");
+      // Optionnel : recharge la page pour réinitialiser l'état
+      location.reload();
+    }
   });
 
-  dom.writeBtn.addEventListener("click", () =>
-    gameLogic.writeCharacter(player, upgrades)
-  );
-  dom.workBtn.addEventListener("click", () => gameLogic.work(player, upgrades));
-  dom.researchBtn.addEventListener("click", () =>
-    gameLogic.doResearch(player, upgrades)
-  );
+  dom.workBtn.addEventListener("click", () => {
+    gameLogic.work(player, upgrades);
+  });
+
+  dom.closeJobModalBtn.addEventListener("click", () => {
+    dom.jobModal.classList.add("hidden");
+    console.log("Fermeture de la modale de travail");
+  });
+  dom.buyFoodBtn.addEventListener("click", () => {
+    dom.foodShopModal.classList.remove("hidden");
+    console.log("Ouverture de la modale d'achat de nourriture");
+  });
+  dom.closeBuyFoodBtn.addEventListener("click", () => {
+    dom.foodShopModal.classList.add("hidden");
+    console.log("Fermeture de la modale d'achat de nourriture");
+  });
+  dom.buyObjectsBtn.addEventListener("click", () => {
+    dom.itemShopModal.classList.remove("hidden");
+    console.log("Ouverture de la modale d'achat d'objets");
+  });
+  dom.closeItemsShopBtn.addEventListener("click", () => {
+    dom.itemShopModal.classList.add("hidden");
+    console.log("Fermeture de la modale d'achat d'objets");
+  });
+
   dom.saveQuitBtn.addEventListener("click", () => {
     savePlayer(player);
     alert("Partie sauvegardée ! À bientôt 👋");
@@ -55,6 +87,7 @@ export function bindEvents(player, upgrades) {
     alert("Partie chargée !");
     dom.pageLayoutEl.classList.remove("hidden");
     dom.menuEl.classList.add("hidden");
+    startGame(player, upgrades);
   });
 
   // Ajoute ce code après le chargement du DOM
@@ -113,5 +146,11 @@ export function bindSettingsEvents() {
   });
   document.getElementById("resetSettingsBtn").addEventListener("click", () => {
     // Réinitialise les paramètres
+    dom.musicToggle.checked = true;
+    dom.musicVolume.value = 100;
+    dom.sfxToggle.checked = true;
+    dom.sfxVolume.value = 100;
+    dom.themeSelect.value = "clair"; // Remplace par ton thème par défaut
+    console.log("Paramètres réinitialisés");
   });
 }

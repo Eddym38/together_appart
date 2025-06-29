@@ -1,0 +1,67 @@
+/* Conteneur commun */
+#flying-messages-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animation commune */
+.flying-message-emoji {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  font-size: 2.2rem;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 1;
+  animation: flyMessageEmojiZigzag 2.2s cubic-bezier(0.4, 2, 0.6, 1) forwards;
+}
+
+/* Variante pour l'argent */
+.flying-money-emoji {
+  color: #388e3c;
+  text-shadow: 0 0 8px #b9f6ca, 0 0 2px #388e3c;
+}
+
+/* Variante pour l'amour */
+.flying-love-emoji {
+  color: #d81b60;
+  text-shadow: 0 0 8px #f8bbd0, 0 0 2px #d81b60;
+}
+
+/* Variante pour la recherche */
+.flying-research-emoji {
+  color: #1976d2;
+  text-shadow: 0 0 8px #bbdefb, 0 0 2px #1976d2;
+}
+
+@keyframes flyMessageEmojiZigzag {
+  0% {
+    transform: translateX(-50%) scale(0.8) rotate(0deg);
+    opacity: 0.85;
+    bottom: 0;
+  }
+  20% {
+    transform: translateX(-60%) scale(1.05) rotate(-10deg);
+    opacity: 1;
+    bottom: 20vh;
+  }
+  40% {
+    transform: translateX(-40%) scale(1.1) rotate(12deg);
+    bottom: 40vh;
+  }
+  60% {
+    transform: translateX(-55%) scale(1) rotate(-8deg);
+    bottom: 60vh;
+  }
+  80% {
+    transform: translateX(-45%) scale(0.95) rotate(10deg);
+    bottom: 80vh;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.7) rotate(-15deg);
+    opacity: 0;
+    bottom: 90vh;
+  }
+}

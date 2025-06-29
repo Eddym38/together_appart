@@ -12,10 +12,24 @@ export class Player {
     this.researchPoints = data.researchPoints || 1000;
     this.allTimeResearchPoints = data.allTimeResearchPoints || 0;
     this.energy = data.energy || 10;
-    this.loveFromBeloved = data.loveFromBeloved || 100;
+    this.loveFromBeloved = data.loveFromBeloved || 70;
     this.hunger = data.hunger || 100;
     this.sleep = data.sleep || 100;
     this.happiness = data.happiness || 100;
+    this.hygiene = data.hygiene || 100;
+    this.intelligence = data.intelligence || 100;
+    this.charisma = data.charisma || 100;
+    this.strength = data.strength || 100;
+    this.stress = data.stress || 0;
+    this.inventory = {
+      food: {
+        sandwich: 2,
+        pizza: 1,
+        gateau: 3,
+      },
+      // Tu pourras ajouter d'autres catégories plus tard (objets, etc.)
+    };
+    this.currentJobId = data.currentJobId || "livreur"; // ID du job actuel
     // Initialiser chaque upgrade à 1 si non présent dans data
     this.upgrades = {};
     for (const upgrade of upgrades) {

@@ -1,0 +1,26 @@
+/* Ajoute dans ton CSS principal */
+#jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.job-choice {
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fff0f6;
+  border: 2px solid #f8bbd0;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+.job-choice.selected,
+.job-choice:hover {
+  background: #f8bbd0;
+  border: 2px solid #d81b60;
+}
+
+.work-section {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+}

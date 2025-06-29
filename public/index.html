@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../src/styles/style.css" />
   </head>
   <body>
+    <div id="flying-messages-bg"></div>
     <div class="container">
       <h1 class="menu-title">Together, Apart 💌</h1>
 
@@ -37,105 +38,155 @@
 
       <div class="page-layout hidden">
         <div class="main">
-          <!-- BARRRES DE RESSOURCES -->
-          <div class="resources base-element">
-            <h2>📊 Ressources</h2>
-            <p>✍️ Caractères écrits : <span id="characters">0</span></p>
-            <p>💕 Amour : <span id="love">0</span></p>
-            <p>💸 Argent : <span id="money">0</span></p>
-            <!-- barre de nourriture-->
-            <p>🍔 Nourriture : <span id="food">0</span></p>
-            <p>🔬 Recherche : <span id="research">0</span></p>
-          </div>
+          <div class="left-section">
+            <!-- BARRRES DE RESSOURCES -->
+            <div class="resources base-element">
+              <h2>📊 Ressources</h2>
+              <p>💕 Force de vivre : <span id="love">0</span></p>
+              <p>💸 Argent : <span id="money">0</span></p>
+              <p>🔬 Recherche : <span id="research">0</span></p>
+            </div>
 
-          <!-- BOUTONS D'ACTIONS -->
-          <div class="actions">
-            <button id="writeBtn">✍️ Écrire un caractère</button>
-            <button id="workBtn">💼 Travailler (gagne de l'argent)</button>
-            <button id="researchBtn">🔬 Faire de la recherche</button>
-          </div>
-          <!-- ZONE DE MESSAGE EN COURS -->
-          <div class="message-box">
-            <h2>📨 Message en cours :</h2>
-            <p id="currentMessage" class="message-text"></p>
-          </div>
-          <!--Statistique du joueur-->
-          <div class="stats base-element">
-            <h2>📈 Statistiques du joueur</h2>
-            <button id="toggleStatsBtn">
-              Afficher/Masquer les statistiques
-            </button>
-            <div class="stats-container">
-              <!--Click-->
-              <p>Caractères écrits : <span id="totalCharacters">0</span></p>
-              <p>
-                Caractères par click : <span id="charactersPerClick">0</span>
-              </p>
-              <p>
-                Caractères par seconde :
-                <span id="charactersPerSeconde">0</span>
-              </p>
-              <!--Amour-->
-              <p>Amour gagné : <span id="totalLove">0</span></p>
-              <p>Amour par click : <span id="lovePerClick">0</span></p>
-              <p>Amour par seconde : <span id="lovePerSecond">0</span></p>
-              <!--Nourriture-->
-              <p>Nourriture gagnée : <span id="totalFood">0</span></p>
-              <p>Nourriture par click : <span id="foodPerClick">0 </span></p>
-              <p>Nourriture par seconde : <span id="foodPerSecond">0</span></p>
-              <!--Argent-->
-              <p>Argent gagné : <span id="totalMoney">0</span></p>
-              <p>Argent par click : <span id="moneyPerClick">0</span></p>
-              <p>Argent par seconde : <span id="moneyPerSecond">0</span></p>
-              <!--Recherche-->
-              <p>Recherche gagnée : <span id="totalResearchPoints">0</span></p>
-              <p>Recherche par click : <span id="researchPerClick">0</span></p>
-              <p>
-                Recherche par seconde : <span id="researchPerSecond">0</span>
-              </p>
+            <!-- BOUTONS D'ACTIONS -->
+            <div class="actions">
+              <div class="work-section">
+                <button id="workBtn">💼 Travailler</button>
+                <button id="chooseJobBtn">👔 Changer de métier</button>
+              </div>
+              <button id="researchBtn">🔬 Faire de la recherche</button>
+            </div>
+            <!-- ZONE DE MESSAGE EN COURS -->
+            <div class="message-box">
+              <h2>📨 Message 📨</h2>
+              <p id="currentMessage" class="message-text"></p>
+            </div>
+            <!--Statistique du joueur-->
+            <div class="stats base-element">
+              <h2>📈 Statistiques du joueur</h2>
+              <button id="toggleStatsBtn">
+                Afficher/Masquer les statistiques
+              </button>
+              <div class="stats-container">
+                <!--Click-->
+                <p>Caractères écrits : <span id="totalCharacters">0</span></p>
+                <p>
+                  Caractères par click : <span id="charactersPerClick">0</span>
+                </p>
+                <p>
+                  Caractères par seconde :
+                  <span id="charactersPerSeconde">0</span>
+                </p>
+                <!--Amour-->
+                <p>Amour gagné : <span id="totalLove">0</span></p>
+                <p>Amour par click : <span id="lovePerClick">0</span></p>
+                <p>Amour par seconde : <span id="lovePerSecond">0</span></p>
+                <!--Nourriture-->
+                <p>Nourriture gagnée : <span id="totalFood">0</span></p>
+                <p>Nourriture par click : <span id="foodPerClick">0 </span></p>
+                <p>
+                  Nourriture par seconde : <span id="foodPerSecond">0</span>
+                </p>
+                <!--Argent-->
+                <p>Argent gagné : <span id="totalMoney">0</span></p>
+                <p>Argent par click : <span id="moneyPerClick">0</span></p>
+                <p>Argent par seconde : <span id="moneyPerSecond">0</span></p>
+                <!--Recherche-->
+                <p>
+                  Recherche gagnée : <span id="totalResearchPoints">0</span>
+                </p>
+                <p>
+                  Recherche par click : <span id="researchPerClick">0</span>
+                </p>
+                <p>
+                  Recherche par seconde : <span id="researchPerSecond">0</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="upgrades">
-          <h2>🔧 Améliorations disponibles</h2>
-          <div id="upgrades-list"></div>
-        </div>
-
-        <div class="container-status-inventory">
-          <div class="status base-element">
-            <!-- Etat du joueur-->
-            <h2>🧑 État du joueur</h2>
-            <div class="gauge-label">💖 Amour de la bien-aimée</div>
-            <div class="gauge">
-              <div class="gauge-bar" id="gauge-loveBeloved"></div>
-              <span class="gauge-value" id="loveBeloved">100</span>
-            </div>
-
-            <div class="gauge-label">🍔 Faim</div>
-            <div class="gauge">
-              <div class="gauge-bar" id="gauge-hunger"></div>
-              <span class="gauge-value" id="hunger">100</span>
-            </div>
-
-            <div class="gauge-label">😴 Sommeil</div>
-            <div class="gauge">
-              <div class="gauge-bar" id="gauge-sleep"></div>
-              <span class="gauge-value" id="sleep">100</span>
-            </div>
-
-            <div class="gauge-label">😊 Bonheur</div>
-            <div class="gauge">
-              <div class="gauge-bar" id="gauge-happiness"></div>
-              <span class="gauge-value" id="happiness">100</span>
-            </div>
-          </div>
+        <div class="middle-section">
           <div class="shop base-element">
             <h2>🛒Boutique</h2>
             <button id="buyFoodBtn">Acheter à manger</button>
-            <button id="buyFoodBtn">Acheter des objets</button>
+            <button id="buyObjectsBtn">Acheter des objets</button>
           </div>
-          <div class="inventory base-element">
-            <h2>📦 Inventaire</h2>
+          <div class="upgrades base-element">
+            <h2>🔧 Améliorations disponibles</h2>
+            <div id="upgrades-list"></div>
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="container-status-inventory">
+            <div class="status base-element">
+              <!-- Etat du joueur-->
+              <h2>🧑 État du joueur</h2>
+              <div class="gauge-label">💖 Amour de la bien-aimée</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-loveBeloved"></div>
+                <span class="gauge-value" id="loveFromBeloved">100</span>
+              </div>
+
+              <div class="gauge-label">🍔 Faim</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-hunger"></div>
+                <span class="gauge-value" id="hunger">100</span>
+              </div>
+
+              <div class="gauge-label">💧 Soif</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-thirst"></div>
+                <span class="gauge-value" id="thirst">100</span>
+              </div>
+
+              <div class="gauge-label">😴 Sommeil</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-sleep"></div>
+                <span class="gauge-value" id="sleep">100</span>
+              </div>
+
+              <div class="gauge-label">😊 Bonheur</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-happiness"></div>
+                <span class="gauge-value" id="happiness">100</span>
+              </div>
+
+              <div class="gauge-label">🚿 Hygiène</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-hygiene"></div>
+                <span class="gauge-value" id="hygiene">100</span>
+              </div>
+              <!--Intelligence-->
+              <div class="gauge-label">🧠 Intelligence</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-intelligence"></div>
+                <span class="gauge-value" id="intelligence">100</span>
+              </div>
+              <!-- Charisme -->
+              <div class="gauge-label">💬 Charisme</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-charisma"></div>
+                <span class="gauge-value" id="charisma">100</span>
+              </div>
+              <!-- Force -->
+              <div class="gauge-label">💪 Force</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-strength"></div>
+                <span class="gauge-value" id="strength">100</span>
+              </div>
+              <!--Stresse-->
+              <div class="gauge-label">😟 Stress</div>
+              <div class="gauge">
+                <div class="gauge-bar" id="gauge-stress"></div>
+                <span class="gauge-value" id="stress">0</span>
+              </div>
+            </div>
+
+            <div class="inventory base-element">
+              <h2>📦 Inventaire</h2>
+              <!-- Le JS ne doit remplir que la liste -->
+              <ul class="inventory-list"></ul>
+              <div id="inventory-desc" class="inventory-desc"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -197,6 +248,7 @@
             <option value="sombre">Sombre</option>
           </select>
         </div>
+        <button id="toggleAnimationsBtn">Animations</button>
         <div class="settings-group">
           <button id="resetSettingsBtn">Réinitialiser les paramètres</button>
         </div>
@@ -237,6 +289,32 @@
         <p>Graphismes par Eddy</p>
         <p>Musique par Eddy</p>
         <p>Merci à tous ceux qui ont contribué à ce projet !</p>
+      </div>
+    </div>
+
+    <!-- Modal pour le shop de nourriture-->
+    <div id="foodShopModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeFoodShopBtn">&times;</span>
+        <h2>🛒 Boutique</h2>
+        <div id="foodList"></div>
+      </div>
+    </div>
+
+    <!-- Modal pour le shop d'objets autre que la nourriture-->
+    <div id="itemShopModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeItemsShopBtn">&times;</span>
+        <h2>🛒 Boutique d'objets</h2>
+        <p>Prochainement disponible !</p>
+      </div>
+    </div>
+
+    <div id="jobModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" id="closeJobModalBtn">&times;</span>
+        <h2>Choisir un métier</h2>
+        <div id="jobList"></div>
       </div>
     </div>
 

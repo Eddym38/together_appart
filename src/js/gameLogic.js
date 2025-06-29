@@ -2,9 +2,12 @@ import * as params from "./params.js";
 import { messagesPredefinis } from "./messages.js";
 import { upgrades } from "../classes/Upgrades.js";
 import * as dom from "./dom.js";
+import { jobs } from "../classes/Jobs.js";
+
 let currentMessageIndex = 0;
 let currentMessageText = messagesPredefinis[currentMessageIndex];
 let currentTypedText = "";
+let emojiCounter = 0; // Ajoute cette variable globale en haut du fichier
 
 export function computeLovePerSecond(player, upgrades) {
   let total = params.DEFAULT_LOVE_PER_SECOND ?? 0;
@@ -45,6 +48,48 @@ export function computeEnergyPerSecond(player, upgrades) {
   for (const upgrade of upgrades) {
     total +=
       (player.upgrades[upgrade.id] || 0) * (upgrade.energyPerSecond || 0);
+  }
+  return total;
+}
+
+export function computeHygienePerSecond(player, upgrades) {
+  let total = params.HYGIENE_DECREASE_RATE ?? 0;
+  for (const upgrade of upgrades) {
+    total +=
+      (player.upgrades[upgrade.id] || 0) * (upgrade.hygienePerSecond || 0);
+  }
+  return total;
+}
+
+export function computeIntelligencePerSecond(player, upgrades) {
+  let total = params.INTELLIGENCE_DECREASE_RATE ?? 0;
+  for (const upgrade of upgrades) {
+    total +=
+      (player.upgrades[upgrade.id] || 0) * (upgrade.intelligencePerSecond || 0);
+  }
+  return total;
+}
+export function computeCharismaPerSecond(player, upgrades) {
+  let total = params.CHARISMA_DECREASE_RATE ?? 0;
+  for (const upgrade of upgrades) {
+    total +=
+      (player.upgrades[upgrade.id] || 0) * (upgrade.charismaPerSecond || 0);
+  }
+  return total;
+}
+export function computeStrengthPerSecond(player, upgrades) {
+  let total = params.STRENGTH_DECREASE_RATE ?? 0;
+  for (const upgrade of upgrades) {
+    total +=
+      (player.upgrades[upgrade.id] || 0) * (upgrade.strengthPerSecond || 0);
+  }
+  return total;
+}
+export function computeStressPerSecond(player, upgrades) {
+  let total = params.STRESS_INCREASE_RATE ?? 0;
+  for (const upgrade of upgrades) {
+    total +=
+      (player.upgrades[upgrade.id] || 0) * (upgrade.stressPerSecond || 0);
   }
   return total;
 }
@@ -135,6 +180,13 @@ export function writeCharacter(player, upgrades) {
   player.characters += computeCharactersPerClick(player, upgrades);
   player.allTimeCharacters += computeCharactersPerClick(player, upgrades);
 
+  // Animation emoji tous les 5 caractères écrits (modifiable)
+  emojiCounter += computeCharactersPerClick(player, upgrades);
+  if (emojiCounter >= 5) {
+    spawnFlyingMessageEmoji();
+    emojiCounter = 0;
+  }
+
   // Ajouter un caractère du message actuel à la zone visible
   let nextChar = currentMessageText[currentTypedText.length] || " ";
   currentTypedText += nextChar;
@@ -156,6 +208,7 @@ export function checkMessageSent(player) {
   if (player.characters >= currentTypedText.length) {
     player.characters -= currentTypedText.length; // On retire les caractères écrits
     player.love += computeLovePerMessage(player, upgrades); // On ajoute l'amour gagné
+    spawnFlyingResourceEmoji("love", computeLovePerMessage(player, upgrades));
     player.allTimeLove += computeLovePerMessage(player, upgrades); // On ajoute l'amour total gagné
 
     // Choisir un message aléatoire différent du précédent
@@ -175,11 +228,21 @@ export function checkMessageSent(player) {
 }
 
 export function work(player) {
-  console.log("work called", { love: player.love, money: player.money });
+  const job = jobs.find((j) => j.id === player.currentJobId);
+  if (!job) {
+    alert("Aucun métier sélectionné !");
+    return;
+  }
   if (player.love >= 1) {
-    player.money += computeMoneyPerWork(player, upgrades);
-    player.allTimeMoney += computeMoneyPerWork(player, upgrades);
-    player.love -= 1; // Travailler coûte de l'amour
+    player.money += job.moneyPerWork;
+    player.allTimeMoney += job.moneyPerWork;
+    player.money += job.moneyPerWork;
+    player.allTimeMoney += job.moneyPerWork;
+    spawnFlyingResourceEmoji("money", job.moneyPerWork);
+    player.love -= 1;
+    player.sleep += job.fatigue; // ou -= Math.abs(job.fatigue)
+    player.hygiene += job.hygiene; // ou -= Math.abs(job.hygiene)
+    player.stress += job.stress; // ou -= Math.abs(job.stress)
     dom.updateDisplay(player, upgrades, buyUpgrade);
   } else {
     alert("Tu es trop triste pour travailler 😢");
@@ -194,6 +257,10 @@ export function doResearch(player) {
   if (player.money >= computeResearchCost(player, upgrades)) {
     player.money -= computeResearchCost(player, upgrades);
     player.researchPoints += computeResearchPerClick(player, upgrades);
+    spawnFlyingResourceEmoji(
+      "research",
+      computeResearchPerClick(player, upgrades)
+    );
     console.log("Recherche effectuée", {
       researchPoints: player.researchPoints,
       allTimeResearchPoints: player.allTimeResearchPoints,
@@ -219,4 +286,48 @@ export function buyUpgrade(player, id) {
   upgrade.purchase(player);
   dom.updateDisplay(player, upgrades, buyUpgrade);
   console.log("Upgrade acheté", upgrade);
+}
+
+function spawnFlyingMessageEmoji() {
+  const container = document.getElementById("flying-messages-bg");
+  const emoji = document.createElement("div");
+  emoji.className = "flying-message-emoji";
+  emoji.textContent = "💌";
+  // Position X aléatoire (20% à 80%)
+  emoji.style.left = `${20 + Math.random() * 60}%`;
+  container.appendChild(emoji);
+  setTimeout(() => emoji.remove(), 2200);
+}
+
+function spawnFlyingResourceEmoji(type, amount = 1) {
+  const container = document.getElementById("flying-messages-bg");
+  const emoji = document.createElement("div");
+
+  // Choix de l'emoji et de la classe selon le type
+  let emojiChar = "💌";
+  let extraClass = "";
+  switch (type) {
+    case "money":
+      emojiChar = "💸";
+      extraClass = "flying-money-emoji";
+      break;
+    case "love":
+      emojiChar = "💖";
+      extraClass = "flying-love-emoji";
+      break;
+    case "research":
+      emojiChar = "🔬";
+      extraClass = "flying-research-emoji";
+      break;
+    default:
+      emojiChar = "💌";
+      extraClass = "";
+  }
+
+  emoji.className = `flying-message-emoji ${extraClass}`;
+  emoji.textContent = amount > 1 ? `${emojiChar} +${amount}` : emojiChar;
+  // Position X aléatoire (20% à 80%)
+  emoji.style.left = `${20 + Math.random() * 60}%`;
+  container.appendChild(emoji);
+  setTimeout(() => emoji.remove(), 2200);
 }

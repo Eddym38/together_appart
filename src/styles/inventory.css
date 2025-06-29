@@ -1,8 +1,77 @@
 .inventory {
   margin: 1rem 0;
   font-size: 1.1rem;
-  padding: 1rem;
-  padding-bottom: 30rem;
+  padding: 1.2rem 1.2rem 2.5rem 1.2rem;
   background-color: #fce4ec;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(216, 27, 96, 0.07);
+  min-height: 120px;
+  position: relative;
+}
+
+.inventory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.inventory-item {
+  background: #fff0f6;
+  border: 2px solid #f8bbd0;
   border-radius: 10px;
+  padding: 0.7em 1.2em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+  position: relative;
+  min-width: 120px;
+  font-size: 1.05em;
+}
+
+.inventory-item:hover {
+  background: #f8bbd0;
+  border: 2px solid #d81b60;
+  box-shadow: 0 4px 16px rgba(216, 27, 96, 0.13);
+}
+
+.inventory-item.empty {
+  background: transparent;
+  border: none;
+  color: #ad1457;
+  cursor: default;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #d81b60;
+}
+
+.item-qty {
+  font-size: 0.98em;
+  color: #444;
+}
+
+.inventory-desc {
+  position: absolute;
+  left: 50%;
+  bottom: 0.7em;
+  transform: translateX(-50%);
+  min-width: 180px;
+  background: #fff0f6;
+  border: 2px solid #f8bbd0;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  color: #ad1457;
+  font-size: 1em;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 2;
 }

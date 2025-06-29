@@ -33,3 +33,97 @@
   color: #333;
   text-shadow: 1px 1px 2px #fff;
 }
+
+@keyframes stressShakeLow {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes stressShakeMedium {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes stressShakeHigh {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-7px);
+  }
+  80% {
+    transform: translateX(7px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.gauge-bar.stress-shake-low {
+  animation: stressShakeLow 0.8s infinite;
+}
+.gauge-bar.stress-shake-medium {
+  animation: stressShakeMedium 0.4s infinite;
+}
+.gauge-bar.stress-shake-high {
+  animation: stressShakeHigh 0.25s infinite;
+  box-shadow: 0 0 16px 4px #d81b60;
+}
+
+.body-stress-max {
+  animation: stressScreenShake 0.25s infinite;
+  background: #ffe6ec !important;
+}
+@keyframes stressScreenShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

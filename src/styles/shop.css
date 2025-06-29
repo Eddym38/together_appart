@@ -1,6 +1,10 @@
 .shop {
-  margin-top: 2rem;
-  padding: 1rem;
   background-color: #fce4ec;
   border-radius: 10px;
+}
+
+.shop h2 {
+  color: #d81b60;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }

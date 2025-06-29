@@ -1,22 +1,3 @@
-/* Conteneur des stats */
-.stats {
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin: 24px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  max-width: 420px;
-  font-size: 1rem;
-}
-
-.stats h2 {
-  margin-top: 0;
-  margin-bottom: 18px;
-  font-size: 1.2em;
-  color: #333;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
 .stats p {
   display: flex;
   justify-content: space-between;
